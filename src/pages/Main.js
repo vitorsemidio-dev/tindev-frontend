@@ -24,6 +24,20 @@ export default function Main({ match }) {
         loadUsers();
     }, [match.params.id]);
 
+    async function handleLike(id) {
+        // console.log('like', id);
+        await api.post(`devs/${id}/likes`, null, {
+            headers: { user: match.params.id },
+        });
+    }
+
+    async function handleDislike(id) {
+        // console.log('dislike', id);
+        await api.post(`devs/${id}/dislikes`, null, {
+            headers: { user: match.params.id },
+        });
+    }
+
     return (
         <div className="main-container">
             <img src={logo} alt="Tinder"/>
@@ -41,11 +55,17 @@ export default function Main({ match }) {
                         </footer>
 
                         <div className="buttons">
-                            <button type="button">
-                                <img src={like} alt="Like"/>
-                            </button>
-                            <button type="button">
+                            <button
+                                type="button"
+                                onClick={() => handleDislike(user._id)}
+                                >
                                 <img src={dislike} alt="Dislike"/>
+                            </button>
+                            <button 
+                                type="button"
+                                onClick={() => handleLike(user._id)}
+                                >
+                                <img src={like} alt="Like"/>
                             </button>
                         </div>
                     </li>
