@@ -4,6 +4,8 @@ import logo from '../assets/logo.svg';
 import like from '../assets/like.svg';
 import dislike from '../assets/dislike.svg';
 
+import './Main.css';
+
 export default function Main({ match }) {
     const repeat = [1, 2, 3, 4];
     return (
